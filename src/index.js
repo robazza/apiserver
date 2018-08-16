@@ -1,20 +1,31 @@
 import http from 'http';
 import { execute, subscribe } from 'graphql';
 import { createServer } from 'http';
-
 import app from './server';
 import schema from './schema';
+import prompt from 'password-prompt';
+
+
+let password = prompt('password: ');
 
 const server = http.createServer(app);
 let currentApp = app;
 
+try {
+	let oracledb = require('oracledb');
+}
+catch (e){
+console.log(eee);
+}
+
+/*
   import oracledb from 'oracledb';
 
   var knex = require('knex')({
 	client: 'oracledb',
 	connection: {
 		user          : "brobazza",
-		password      : "senha",
+		password      : password,
 		connectString : "SATDES"
 	}
   });
@@ -26,7 +37,7 @@ let currentApp = app;
 		return 1;
 	}
 	 adicionar1() ;
-
+*/
 server.listen(3000, () => {
 	console.log(`GraphQL-server listening on port 3000.`);
 });
