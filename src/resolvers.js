@@ -1,4 +1,5 @@
 import { property, constant, find } from 'lodash';
+import oracle from './oracle';
 
 var infoconvData;
 var contatosCobranca;
@@ -8,7 +9,12 @@ contatosCobranca = [ {cpf:"001",nome:"Nome001",enderecos:[{CEP:"700001"}], telef
 
 export default {
     RootQuery: {
-        hello_world: () => 'OOpsxx12345',
+        hello_world: () => {
+            var a = oracle.select('*').from('DBASAT.ACESSORESTITUICAO');
+            
+            return a;
+
+        },
         infoconv: (obj, args, context) => infoconvData
     }
     , InfoconvAPI: {
