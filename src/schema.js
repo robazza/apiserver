@@ -25,9 +25,33 @@ const InfoconvDefinition = `
     endereco: InfoconvEndereco
   }
 
+  type InfoconvCnae {
+    codigoCnae: String
+    descricao: String
+  }
+
   type InfoconvPessoaJuridica {
     cnpj: String!
     razaoSocial: String
+    telefones: [ String ]
+    valorCapitalSocial: String
+    email: String
+    nomeFantasia: String
+    nomeResponsavel: String
+    optanteSimples: String
+    dataAbertura:String
+    dataExclusaoSimples: String
+    dataOpcaoSimples: String
+    dataSituacaoCadastral:String
+    dataAtualizacaoPMS: String
+
+    cnaeSecundarios: [InfoconvCnae]
+    cnae: InfoconvCnae
+    contador: String
+    endereco: String
+    SQINDICADORESTABELECIMENTO: String
+    naturezaJuridica: String
+
   }
 
   type InfoconvEndereco {

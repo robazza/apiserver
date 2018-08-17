@@ -15,6 +15,7 @@
     "graphql-tools": "^3",
     "knex": "^0.15.2",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "oracledb": "^2.3.0",
     "password-prompt": "^1.0.7"
   },
