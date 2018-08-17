@@ -1,7 +1,7 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './resolvers';
 
-const RootQuery = `
+const RootQueryDefinition = `
   type RootQuery {
     hello_world: String
     infoconv: InfoconvAPI
@@ -11,12 +11,27 @@ const RootQuery = `
   }
 
   type InfoconvAPI {
-    usuario(cpf: String!): InfoconvUsuario
+    contribuinte(cpf: String, cnpj: String, nome: String): InfoconvContribuinte
   }
 
-  type InfoconvUsuario {
-     cpf: String!
-     nome: String!
+`;
+
+const InfoconvDefinition = `
+  union InfoconvContribuinte = InfoconvPessoaFisica | InfoconvPessoaJuridica
+
+  type InfoconvPessoaFisica {
+    cpf: String!
+    nome: String!
+    endereco: InfoconvEndereco
+  }
+
+  type InfoconvPessoaJuridica {
+    cnpj: String!
+    razaoSocial: String
+  }
+
+  type InfoconvEndereco {
+    cep: String
   }
 `;
 
@@ -47,6 +62,6 @@ const SchemaDefinition = `
 `;
 
 export default makeExecutableSchema({
-	typeDefs: [SchemaDefinition, RootQuery],
+	typeDefs: [SchemaDefinition, RootQueryDefinition, InfoconvDefinition],
 	resolvers: resolvers
 });
